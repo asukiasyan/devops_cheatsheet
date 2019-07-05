@@ -1,3 +1,3 @@
 # DevOps CheatSheet
 
-Collection of some handy tips and tricks for popular DevOps tools
+Collection of some handy commands/template_files for popular DevOps tools
