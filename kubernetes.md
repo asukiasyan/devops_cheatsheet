@@ -26,4 +26,19 @@ kubectl get pods -o wide                                                        
 kubectl get pods -n team -a                                                           # Show dead and not visible pods
 kubectl rollout history deployment <deployment>                                       # Show deployment rollout history
 kubectl rollout undo deployment <deployment> --to-revision=1                          # Rollout deployment to 1st revision 
+kubectl create --dry-run --validate -f pod.yaml                                       # Validate yaml file with dry run
+kubectl exec -it <podName> -- ls -l /etc/hosts                                        # Run shell command on pod
+kubectl exec -it <podName> bash                                                       # Run interactive terminal
+kubectl top <pod|node>                                                                # Get resource usage of pod/node
+kubectl scale --replicas=3 deployment/<deploymentName>                                # Scale deployment to desired replicas
+kubectl rollout undo deployment/<deploymentName>                                      # Rollout to previous revision of deployment
+kubectl cordon <nodeName>                                                             # Mark Node as unschedulable 
+kubectl uncordon <nodeName>                                                           # Mark Node as schedulable
+kubectl drain <nodeName>                                                              # Drain node in preparation for maintenance
+```
+
+### Information
+
+```
+kubectl explain [pod|node|namespace etc]                                              # Info about Kubernetes resource
 ```
