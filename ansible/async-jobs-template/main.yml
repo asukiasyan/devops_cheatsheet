@@ -1,0 +1,20 @@
+---
+- name: Monitor Web_App Script for 5 Minutes
+  hosts: web_server
+  command: /opt/monitor_webapp.py
+  async: 300 # This will still wait 5 min for the job to be done before retry
+  poll: 0 # poll 0 will make sure that it will switch to another job immediately without waiting
+  register: webapp_result # Register the status of job into variable
+
+- name: Monitor DB for 5 min
+  hosts: db_server
+  command: /opt/monitor_database.py
+  async: 300 
+  poll: 0 
+  register: webapp_result
+
+- name: Check Status of Tasks
+  async_status: jid={{ webapp_result.ansible_job_id }} # Not every module has ability to register ansible_job_idß
+  register: job_result
+  until: job_result.finished
+  retries: 30
