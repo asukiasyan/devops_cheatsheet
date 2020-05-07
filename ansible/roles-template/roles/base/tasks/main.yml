@@ -1,0 +1,12 @@
+---
+    - name: Install Requirements
+      apt: name="{{ item }}" state=present
+      loop:
+        - python
+        - python-setuptools
+        - python-dev
+        - build-essential
+        - python-pip
+        - python-mysqldb
+        - python-apt
+      become: yes

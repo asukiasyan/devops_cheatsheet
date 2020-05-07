@@ -1,0 +1,17 @@
+---
+    - name: Install Python Flask dependency
+      pip:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - flask
+        - flask-mysqlo
+      become: yes
+
+    - name: Copy Source Code
+      copy: src=../source_code/app.py destination=/opt/app/py
+      become: yes
+
+    - name: Start a WebServer
+      shell: FLASK_APP=/opt/app.py flask run --host=0.0.0.0 &
+      become: yes

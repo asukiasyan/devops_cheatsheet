@@ -1,0 +1,7 @@
+---
+- name: Deploy a web server
+  hosts: servers
+  roles:
+    - { role: ../../roles/base }
+    - { role: ../../roles/mariadb }
+    - { role: ../../roles/flask_webapp }

@@ -1,0 +1,27 @@
+---
+    - name: Install MySQL DB
+      apt: name="{{ item }}" state=present
+      loop:
+        - mariadb-server
+        - mariadb-client
+      become: yes
+     
+    - name: Start MySQL Service
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+      become: yes
+
+    - name: Create Application Database
+      mysql_db: name="{{ db_name }}" state=present
+      become: yes
+
+    - name: Create Database User
+      mysql_user:
+        name: "{{ db_user }}"
+        password: "{{ db_user_pass }}"
+        priv: '*.*:ALL'
+        state: present
+        host: '%'
+      become: yes
