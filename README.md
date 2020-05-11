@@ -2,4 +2,4 @@
 
 Collection of some handy commands/template_files for popular DevOps tools
 
-TODO: Add cheatsheet for Ansible and Terraform
+TODO: Add cheatsheet for Terraform
